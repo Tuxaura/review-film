@@ -16,3 +16,11 @@ Route::get('genres/{genre}', [GenreController::class, 'show'])->name('genres.sho
 Route::resource('films', FilmController::class);
 Route::get('films/{film}', [FilmController::class, 'show'])->name('films.show');
 
+
+Auth::routes();
+
+
+
+
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
