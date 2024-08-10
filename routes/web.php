@@ -5,22 +5,17 @@ use App\Http\Controllers\FilmController;
 use App\Http\Controllers\GenreController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::to('/films');
 });
 
-// Genre Routes
 Route::resource('genres', GenreController::class);
-Route::get('genres/{genre}', [GenreController::class, 'show'])->name('genres.show');
-
-// Film Routes
 Route::resource('films', FilmController::class);
-Route::get('films/{film}', [FilmController::class, 'show'])->name('films.show');
 
+Route::get('logout', function ()
+{
+    auth()->logout();
+    Session()->flush();
+    return Redirect::to('/login');
+})->name('logout');
 
 Auth::routes();
-
-
-
-
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

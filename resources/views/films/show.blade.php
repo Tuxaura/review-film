@@ -9,11 +9,13 @@
     <p><strong>Description:</strong> {{ $film->description }}</p>
     <p><strong>Genre:</strong> {{ $film->genre->name }}</p>
     <a href="{{ route('films.index') }}">Back to Films</a>
+    @auth
     <a href="{{ route('films.edit', $film->id) }}">Edit</a>
     <form action="{{ route('films.destroy', $film->id) }}" method="POST" style="display:inline;">
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button>
     </form>
-</body>
+    @endauth
+    </body>
 </html>

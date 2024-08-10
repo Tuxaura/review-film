@@ -14,6 +14,10 @@ class Film extends Model
     /**
      * Get the genre that owns the film.
      */
+    // public function genres()
+    // {
+    //     return $this->belongsToMany(Genre::class);
+    // }
     public function genre()
     {
         return $this->belongsTo(Genre::class);

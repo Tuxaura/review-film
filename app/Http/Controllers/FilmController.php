@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $films = Film::with('genre')->get();
@@ -30,6 +35,7 @@ class FilmController extends Controller
 
         Film::create($request->all());
         return redirect()->route('films.index');
+        
     }
 
     public function edit(Film $film)

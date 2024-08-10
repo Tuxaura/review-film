@@ -1,12 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Controllers\Controller;
 
 use App\Models\Genre;
 use Illuminate\Http\Request;
 
+
 class GenreController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $genres = Genre::all();
@@ -45,7 +53,8 @@ class GenreController extends Controller
 
     public function show(Genre $genre)
     {
-        return view('genres.show', compact('genre'));
+        $films = $genre->films;
+        return view('genres.show', compact('genre', 'films'));
     }
 
     public function destroy(Genre $genre)
@@ -53,4 +62,7 @@ class GenreController extends Controller
         $genre->delete();
         return redirect()->route('genres.index');
     }
+
+   
+
 }

@@ -14,6 +14,10 @@ class Genre extends Model
     /**
      * Get the films for the genre.
      */
+    // public function films()
+    // {
+    //     return $this->belongsToMany(Film::class);
+    // }
     public function films()
     {
         return $this->hasMany(Film::class);
